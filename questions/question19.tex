@@ -1,0 +1,68 @@
+\section{Ортогональные замены координат в пространстве: углы Эйлера}
+
+\begin{theorem}
+    Любая ортогональная матрица $3 \times 3$ с определителем, равным $1$, представляется в виде
+    $$
+    \begin{pmatrix}
+        \cos\varphi & -\sin\varphi & 0\\
+        \sin\varphi & \cos\varphi & 0\\
+        0 & 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & 0 & 0\\
+        0 & \cos\theta & -\sin\theta\\
+        0 & \sin\theta & \cos\theta
+    \end{pmatrix}
+    \begin{pmatrix}
+        \cos\psi & -\sin\psi & 0\\
+        \sin\psi & \cos\psi & 0\\
+        0 & 0 & 1
+    \end{pmatrix}
+    $$
+\end{theorem}
+
+\begin{proof}
+    Пусть имеем два положительно ориентированных прямоугольных репера $Oe_1e_2e_3$ и $Oe_1^\prime e_2^\prime e_3^\prime$. Матрица замены координат по сути является матрицей перехода от первого базиса ко второму. Если $e_3 = e_3^\prime$, то всё сводится к замене координат в плоскости $Oe_1e_2$ с матрицей
+    $$
+    \begin{pmatrix}
+        \cos\varphi & -\sin\varphi & 0\\
+        \sin\varphi & \cos\varphi & 0\\
+        0 & 0 & 1\\
+    \end{pmatrix}.
+    $$
+    Если же $e_3 = -e_3^\prime$, то подходит такая матрица (берём $\theta = \pi$):
+    $$
+    \begin{array}{c}
+        \begin{pmatrix}
+            \cos\varphi & -\sin\varphi & 0\\
+            \sin\varphi & \cos\varphi & 0\\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & \cos\theta & -\sin\theta\\
+            0 & \sin\theta & \cos\theta
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            \cos\varphi & -\sin\varphi & 0\\
+            \sin\varphi & \cos\varphi & 0\\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & -1 & 0\\
+            0 & 0 & -1
+        \end{pmatrix} = {}\\{} =
+        \begin{pmatrix}
+            \cos\varphi & \sin\varphi & 0\\
+            \sin\varphi & -\cos\varphi & 0\\
+            0 & 0 & -1
+        \end{pmatrix}.
+    \end{array}
+    $$
+    Первым поворотом (вокруг вектора $e_3$) мы совместили $e_1$ и $e_1^\prime$. Вторым поворотом (вокруг вектора $e_1$) мы совместили $e_3$ и $e_3^\prime$. А $e_2$ некуда деваться, он обязан совпасть с $e_2^\prime$ в силу ортонормированности и положительной ориентированности базисов.
+    
+    Теперь пусть $e_3$ и $e_3^\prime$ не коллинеарны. Тогда определим вектор $\displaystyle f = \frac{[e_3, e_3^\prime]}{|[e_3, e_3^\prime]|}$. Этот вектор является направляющим для прямой пересечения плоскостей $Oe_1e_2$ и $Oe_1^\prime e_2^\prime$. Теперь базисы можно совместить композицией из трёх поворотов вокруг векторов --- от $e_1$ к $f$ (вокруг $e_3$), от $e_3$ к $e_3^\prime$ (вокруг нового $e_1$) и от нового $e_1$ к $e_1^\prime$ (вокруг нового $e_3$). Матрицы для этих поворотов имеют в точности такой вид, какой указан в формулировке теоремы (с тем же порядком). Их композиция (как доказывалось ранее) задаётся произведением соответствующих матриц в порядке применения движений.
+\end{proof}
+
+

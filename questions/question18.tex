@@ -1,0 +1,40 @@
+\section{Матрица Грама системы векторов. Связь с площадью и объёмом}
+
+\begin{definition}
+    \textbf{Матрица Грама} набора векторов $v_1, \ldots, v_k$ --- матрица
+    $$G(v_1, \ldots, v_k) = (g_{ij})_{i, j = 1, \ldots, k},\quad g_{ij} = (v_i, v_j).$$
+\end{definition}
+
+\begin{theorem}
+    $$S^2(u, v) = \det G(u, v),\quad V^2(u, v, w) = \det G(u, v, w).$$
+\end{theorem}
+
+\begin{proof}
+    Вспомним, что определитель инвариантен относительно транспонирования и что определитель произведения равен произведению определителей:
+    $$
+    \begin{array}{c}
+        V^2(u, v, w) = (u, v, w)^2 = \det\begin{pmatrix}
+            u_1 & u_2 & u_3\\
+            v_1 & v_2 & v_3\\
+            w_1 & w_2 & w_3
+        \end{pmatrix}^2 = \det\begin{pmatrix}
+            u_1 & u_2 & u_3\\
+            v_1 & v_2 & v_3\\
+            w_1 & w_2 & w_3
+        \end{pmatrix}\cdot\det
+        \begin{pmatrix}
+            u_1 & v_1 & w_1\\
+            u_2 & v_2 & w_2\\
+            u_3 & v_3 & w_3
+        \end{pmatrix} = {}\\{} = \det
+        \begin{pmatrix}
+            (u, u) & (u, v) & (u, w)\\
+            (v, u) & (v, v) & (v, w)\\
+            (w, u) & (w, v) & (w, w)
+        \end{pmatrix} = \det G(u, v, w).
+    \end{array}
+    $$
+    С площадью аналогично, меняется лишь размер матрицы (теперь $2 \times 2$).
+\end{proof}
+
+

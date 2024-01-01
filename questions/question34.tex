@@ -1,0 +1,66 @@
+\section{Ортогональная классификация поверхностей второй степени. Приведение уравнения поверхности к каноническому виду}
+
+\begin{theorem}[Метрическая классификация поверхностей второго порядка]
+    Для любой квадрики сщуествует прямоугольная система координат, в которой она имеет одиниз следующих 17 видов:
+    \begin{enumerate}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$ ($a \geqslant b \geqslant c > 0$) --- \textbf{эллипсоид}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = -1$ ($a \geqslant b \geqslant c > 0$) --- \textbf{мнимый эллипсоид}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$ ($a \geqslant b > 0$) --- \textbf{однополостный гиперболоид}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = -1$ ($a \geqslant b > 0$) --- \textbf{двуполостный гиперболоид}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 0$ ($a \geqslant b > 0$) --- \textbf{конус}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 0$ ($a \geqslant b > 0$) --- \textbf{мнимый конус}
+        \item $\displaystyle\frac{x^2}{p} + \frac{y^2}{q} = 2z$ ($p \geqslant q > 0$) --- \textbf{эллиптический параболоид}
+        \item $\displaystyle\frac{x^2}{p} - \frac{y^2}{q} = 2z$ ($p \geqslant q > 0$) --- \textbf{гиперболический параболоид}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ ($a \geqslant b > 0$) --- \textbf{эллиптический цилиндр}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} = -1$ ($a \geqslant b > 0$) --- \textbf{мнимый эллиптический цилиндр}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} = 0$ ($a \geqslant b > 0$) --- \textbf{пара мнимых пересекающихся плоскостей}
+        \item $\displaystyle\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1$ ($a \geqslant b > 0$) --- \textbf{гиперболичекий цилиндр}
+        \item $\displaystyle\frac{x^2}{a^2} - \frac{y^2}{b^2} = 0$ ($a \geqslant b > 0$) --- \textbf{пара пересекающихся плоскостей}
+        \item $\displaystyle y^2 = 2px$ ($p > 0$) --- \textbf{параболический цилиндр}
+        \item $\displaystyle y^2 = a^2$ ($a > 0$) --- \textbf{пара параллельных плоскостей}
+        \item $\displaystyle y^2 = -a^2$ ($a > 0$) --- \textbf{пара мнимых параллельных плоскостей}
+        \item $\displaystyle y^2 = 0$ --- \textbf{пара совпавших плоскостей}
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Веселов и Троицкий её не доказывают и я не буду]
+    Есть прямоугольная система координат с тем же началом, в которой матрица квадратичной части имеет диагональный вид
+    $$
+    Q^\ast =
+    \begin{pmatrix}
+        \lambda_1 & 0 & 0\\
+        0 & \lambda_2 & 0\\
+        0 & 0 & \lambda_3
+    \end{pmatrix},
+    $$
+    где $\lambda_i$ --- собственные значений матрицы $Q$.
+\end{theorem}
+
+\begin{lemma}
+    Для любого многочлена второй степени в пространстве существует один из следующих пяти видов:
+    \begin{enumerate}
+        \item $F = \lambda_1x^2 + \lambda_2y^2 + \lambda_3z^2 + \tau$ ($\lambda_1\lambda_2\lambda_3 \ne 0$)
+        \item $F = \lambda_1x^2 + \lambda_2y^2 + 2b_3z$ ($\lambda_1\lambda_2b_3 \ne 0$)
+        \item $F = \lambda_1x^2 + \lambda_2y^2 + \tau$ ($\lambda_1\lambda_2 \ne 0$)
+        \item $F = \lambda_1x^2 + 2b_2y$ ($\lambda_1b_2 \ne 0$)
+        \item $F = \lambda_1x^2 + \tau$ ($\lambda_1 \ne 0$)
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Тут надо просто перебирать случаи и верить в себя. После диагонализации матрицы квадратичной формы вид $F$ будет такой:
+    $$
+    F = \lambda_1x^2 + \lambda_2y^2 + \lambda_3z^2 + 2b_1x + 2b_2y + 2b_3z + b_0 = 0.
+    $$
+    Перебирать надо случаи, указанные в скобках в формулировке. Там выделяются полные квадраты и всё приводится к тому виду, к какому нам хочется (ну как хочется, нужно).
+\end{proof}
+
+Теперь докажем теорему об ортогональной классификации.
+
+\begin{proof}
+    К сожалению, я не успеваю тут расписать подробно. Примените предыдущую лемму и разберите случаи. Тут главное --- помнить канонические уравнения, которые мы должны по итогу получить и помнить, что их должно быть 17. Всё получится.
+\end{proof}
+
+Приводить к каноническому виду поверхности --- почти то же самое, что и кривые, поэтому допишу этот кусок, если будет время (вряд ли).
+
+

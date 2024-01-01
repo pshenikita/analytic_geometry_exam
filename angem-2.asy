@@ -1,0 +1,51 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="angem-2";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+defaultpen(fontsize(11pt));
+usepackage("amsmath");
+usepackage("amssymb");
+settings.tex="lualatex";
+settings.outformat="pdf";
+
+import geometry;
+
+size(12cm);
+pair u = (5, 0), v = (2, 3), w = (3, 1);
+pair A = (0, 0), B = A + u, C = B + v, D = C - u, E = B + w, F = E + v;
+draw(A -- B, Arrow(HookHead, size=1.5mm));
+draw(Label("$u$", 1.5 * dir(-90), position=Relative(.5)), A -- B);
+draw(A -- D, Arrow(HookHead, size=1.5mm));
+draw(Label("$v$", position=Relative(.5)), align=LeftSide, A -- D);
+draw(B -- C -- D);
+draw(B -- E, Arrow(HookHead, size=1.5mm));
+draw(Label("$w$", position=Relative(.6)), align=LeftSide, B -- E);
+draw(C -- F -- E);
+pair Fp = extension(C, D, E, F);
+draw(C -- Fp);
+pair Ep = extension(A, B, F, E);
+draw(B -- Ep, Arrow(HookHead, size=1.5mm));
+draw(Ep -- E);
+draw(D -- D + v, dashed);
+pair H1 = projection(A, D) * C, H2 = projection(E, F) * C;
+draw(H1 -- H2);
+markrightangle(D, H1, C, size=2mm);
+markrightangle(F, H2, C, size=2mm);
+draw(Label("$w^\prime$", position=Relative(.6)), B -- Ep);
+
+dot("$A$", A, dir(45 + 180));
+dot("$B$", B, dir(-90));
+dot("$C$", C, dir(90));
+dot("$D$", D, dir(-45 + 180));
+dot("$E$", E, dir(-45));
+dot("$F$", F, dir(45));
+dot("$F^\prime$", Fp, dir(0));
+dot("$E^\prime$", Ep, dir(0));
+dot("$H_1$", H1, dir(-45 + 180));
+dot("$H_2$", H2, dir(-45));

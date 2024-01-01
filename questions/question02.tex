@@ -1,0 +1,194 @@
+\section{Замена координат на плоскости и в пространстве}
+
+\begin{definition}
+    Пусть даны два базиса $\{e_1, \ldots, e_k\}$ и $\{f_1, \ldots, f_k\}$. \textbf{Матрицей перехода} от первого ко второму называется $C = (c_{ij})$, где $c_{ij}$ --- $i$-ая координата вектора $f_j$ в базисе $\{e_1, \ldots, e_k\}$.
+\end{definition}
+
+Нетрудно заметить, что при этом $
+\begin{pmatrix}
+    f_1 & \ldots & f_k
+\end{pmatrix} = 
+\begin{pmatrix}
+    e_1 & \ldots & e_k
+\end{pmatrix} \cdot C
+$.
+
+\begin{definition}
+    Два базиса \textbf{одинаково ориентированы}, если $\det$ матрицы перехода от первого ко второму положителен, \textbf{противоположно ориентированы}, если отрицателен.
+\end{definition}
+
+Логичный вопрос --- а что если $\det$ матрицы перехода равен $0$? Ну тогда базис, в который мы попали, на самом деле не базис. Это можно понять так: в курсе алгебры доказывалась верхняя оценка на ранг произведения --- он не превосходит ранг каждого из множителей. Но если $\det$ матрицы перехода нулевой, то её ранг строго меньше её размера, т.\,е. меньше количества базисных векторов. А значит, и ранг системы векторов, в которую мы попали, меньше их количества, т.\,е. эта система линейно зависима, а значит, не базис.
+
+Нетрудно проверить, что отношение <<базисы одинаково ориентированы>> является отношением эквивалентности, а потому все базисы разбиваются на два класса эквивалентности.
+
+\begin{definition}
+    \textbf{Ориентация} --- выбор класса эквивалентности одинаково ориентированных векторов.
+\end{definition}
+
+То есть, <<ввести ориентацию>> значит принять какой-то класс <<положительно ориентированным>>, а какой-то --- <<отрицательно>>. Положительной будем считать ориентацию стандартного базиса.
+
+Следующая теорема не применяется на практике, но полезна для развития интуитивного понимания того, что такое замены координат.
+
+\begin{theorem}[Непрерывная деформируемость одинаково ориентированных базисов]
+    Два базиса одинаково ориентированы $\Leftrightarrow$ первый можно непрерывно деформировать во второй.
+\end{theorem}
+
+Расшифруем, что значит <<непрерывно деформировать базис $\{e_1, \ldots, e_k\}$ в базис $\{f_1, \ldots, f_k\}$>>. Это значит предъявить такие $a_1(t), \ldots, a_k(t)$, непрерывно зависящие от $t$ (введём нормировку $0 \leqslant t \leqslant 1$), что $a_i(0) = e_i$, $a_i(1) = f_i$ и $\forall\!\:t$ система $\{a_1(t), \ldots, a_k(t)\}$ является базисом.
+
+\begin{proof}
+    Докажем в обе стороны:
+
+    $\Leftarrow$. Пусть $C(t)$ --- матрица перехода от $\{e_1, \ldots, e_k\}$ к $\{a_1(t), \ldots, a_k(t)\}$. Известно, что $\det C(0) > 0$, $\det C(t) \ne 0$ $\forall\!\:t$, отсюда (из непрерывности) следует $\det C(t) > 0$ $\forall\!\:t$, в частности, $\det C(1) > 0$.
+
+    Тут следует понимать, что непрерывность $\det C(t)$ ещё нужно доказывать. Кажется, это легко делается через определение $\det$ через перестановки: каждый множитель в каждом слагаемом непрерывно меняется относительно $t$, а значит, и вся сумма непрерывна по $t$.
+
+    $\Rightarrow$. Разложим матрицу $C$ в произведение элементарных: $C = C_1\ldots C_N$. Причём, элементарные матрицы могут быть не любыми, а только такими: $E + \lambda E_{ij}$, (при $i \ne j$ соответствует преобразованию <<прибавить к $i$-ой строке $j$-ую с коэффициентом $\lambda$>> а при $i = j$ --- <<умножить $i$-ую строку на $\mu = 1 + \lambda$>>). Если в них $\lambda$ и $\mu$ заменить на функции $k(t) \in C[0; 1]$: $k(0) = 1$, а $k(1)$ равен тому коэффициенту, что стоит на этом месте в сответствующей элементарной матрице в разложении $C$. Получим непрерывную $C(t)$ и $C(0) = E$, $C(1) = C$.
+\end{proof}
+
+\begin{theorem}
+    Пусть даны два репера: $(O, e_1, \ldots, e_n)$ и $(O^\prime, e_1^\prime, \ldots, e_n^\prime)$, причём $C$ --- матрица перехода между их базисами, а $(x_1, \ldots, x_n)$ и $(x_1^\prime, \ldots, x_n^\prime)$ --- соответствующие им системы координат. Тогда
+    $$
+    \begin{pmatrix}
+        x_1\\
+        \vdots\\
+        x_n
+    \end{pmatrix} = C \cdot
+    \begin{pmatrix}
+        x_1^\prime\\
+        \vdots\\
+        x_n^\prime
+    \end{pmatrix} + O^\prime,
+    $$
+    где под $O^\prime$ понимаем столбец координат этой точки в первой системе.
+\end{theorem}
+
+\begin{proof}
+    Дано $\overrightarrow{OO^\prime} = 
+    \begin{pmatrix}
+        e_1 & \ldots & e_n
+    \end{pmatrix} \cdot O^\prime$ и $
+    \begin{pmatrix}
+        e_1^\prime & \ldots & e_n^\prime
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        e_1 & \ldots & e_n
+    \end{pmatrix} \cdot C 
+    $. Точки с координатами $(x_1, \ldots, x_n)$ и $(x_1^\prime, \ldots, x_n^\prime)$ совпадают:
+    $$
+    O +
+    \begin{pmatrix}
+        e_1 & \ldots & e_n
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1\\
+        \vdots\\
+        x_n
+    \end{pmatrix} = O^\prime +
+    \begin{pmatrix}
+        e_1^\prime & \ldots & e_n^\prime
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1^\prime\\
+        \vdots\\
+        x_n^\prime
+    \end{pmatrix}.
+    $$
+
+    Отсюда
+    $$
+    \begin{pmatrix}
+        e_1 & \ldots & e_n
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1\\
+        \vdots\\
+        x_n
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        e_1^\prime & \ldots & e_n^\prime
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1^\prime\\
+        \vdots\\
+        x_n^\prime
+    \end{pmatrix} + (O^\prime - O).
+    $$
+
+    Пользуясь условием, получаем
+    $$
+    \begin{pmatrix}
+        e_1 & \ldots & e_n
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1\\
+        \vdots\\
+        x_n
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        e_1 & \ldots & e_n
+    \end{pmatrix} \left(C
+    \begin{pmatrix}
+        x_1^\prime\\
+        \vdots\\
+        x_n^\prime
+    \end{pmatrix} + O^\prime\right).
+    $$
+    
+    А так как разложение по базису для каждого вектора (каждой точки) единственно, то его можно убрать, получив верное равенство
+    $$
+    \begin{pmatrix}
+        x_1\\
+        \vdots\\
+        x_n
+    \end{pmatrix} = C \cdot
+    \begin{pmatrix}
+        x_1^\prime\\
+        \vdots\\
+        x_n^\prime
+    \end{pmatrix} + O^\prime,
+    $$
+\end{proof}
+
+\begin{orangebox}
+    Как следствие, координаты векторов определяются по следующей формуле:
+    $$
+    \begin{pmatrix}
+        x_1\\
+        \vdots\\
+        x_n
+    \end{pmatrix} = C \cdot
+    \begin{pmatrix}
+        x_1^\prime\\
+        \vdots\\
+        x_n^\prime
+    \end{pmatrix}
+    $$
+    Это вызвано тем, что $\overrightarrow{AB} = B - A$ с точки зрения координат, и при вычитании свободный член сокращается.
+\end{orangebox}
+
+\begin{statement}
+    Если $C_1$ --- матрица перехода от $\{e_1, \ldots, e_k\}$ к $\{f_1, \ldots, f_k\}$, а $C_2$ --- от $\{f_1, \ldots, f_k\}$ к $\{g_1, \ldots, g_k\}$, то матрица перехода от $\{e_1, \ldots, e_k\}$ к $\{g_1, \ldots, g_k\}$ выглядит как $C = C_1C_2$.
+\end{statement}
+
+\begin{proof}
+    Пусть $x_1, \ldots, x_k$ --- координаты в первом базисе, $x_1^\prime, \ldots, x_k^\prime$ --- во втором, $x_1^{\prime\prime}, \ldots, x_k^{\prime\prime}$ --- в третьем. Тогда
+    $$
+    \begin{pmatrix}
+        x_1\\
+        \vdots\\
+        x_k
+    \end{pmatrix} = C_1 \cdot
+    \begin{pmatrix}
+        x_1^\prime\\
+        \vdots\\
+        x_k^\prime
+    \end{pmatrix} = \underbrace{C_1C_2}_{{} = C} \cdot
+    \begin{pmatrix}
+        x_1^{\prime\prime}\\
+        \vdots\\
+        x_k^{\prime\prime}
+    \end{pmatrix}.
+    $$
+\end{proof}
+
+

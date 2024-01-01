@@ -1,0 +1,101 @@
+\section{Ориентированная площадь параллелограмма на плоскости и ориентированный объём параллелепипеда в пространстве. Выражение ориентированной площади и ориентированного объёма через определители}
+
+\begin{definition}
+    Обозначим за $S(u, v)$ \textbf{ориентированную площадь} параллелограмма, натянутого на вектора $u$ и $v$. Считаем знак площади таким же, как знак ориентации базиса $\{u, v\}$\footnotemark.
+\end{definition}
+
+\begin{definition}
+    Обозначим за $V(u, v, w)$ \textbf{ориентированный объём} параллелепипеда, натянутого на вектора $u$, $v$ и $w$. Считаем знак площади таким же, как знак ориентации базиса $\{u,v , w\}$.
+\end{definition}
+
+\footnotetext{если эти векторы линейно зависимы, то площадь равна нулю и вопрос про знак не очень интересный}
+
+\begin{statement}
+    Пусть $u = (u_1, u_2)$, $v = (v_1, v_2)$. Тогда
+    $$S(u, v) = \det
+    \begin{pmatrix}
+        u_1 & u_2\\
+        v_1 & v_2
+    \end{pmatrix}.$$
+\end{statement}
+
+\begin{proof}
+    Докажем, что $S$ --- полилинейная и кососимметрическая функция. Заметим, что кососимметричность прямо следует из определения. Для полилинейности необоходимо, чтобы $S(u + w, v) = S(u, v) = S(w, v)$. В доказательстве будем использовать картинку, поэтому нужно рассмотреть два очень похожих случая --- когда ориентация базисов $\{u, v\}$ и $\{w, v\}$ одинаковая и когда она разная. Мы рассмотрим случай, когда она одинаковая, второй случай рассматривается аналогично.
+    \begin{center}
+        \begin{asy}
+            defaultpen(fontsize(11pt));
+            usepackage("amsmath");
+            usepackage("amssymb");
+            settings.tex="lualatex";
+            settings.outformat="pdf";
+
+            import geometry;
+
+            size(12cm);
+            pair u = (5, 0), v = (2, 3), w = (3, 1);
+            pair A = (0, 0), B = A + u, C = B + v, D = C - u, E = B + w, F = E + v;
+            draw(A -- B, Arrow(HookHead, size=1.5mm));
+            draw(Label("$u$", 1.5 * dir(-90), position=Relative(.5)), A -- B);
+            draw(A -- D, Arrow(HookHead, size=1.5mm));
+            draw(Label("$v$", position=Relative(.5)), align=LeftSide, A -- D);
+            draw(B -- C -- D);
+            draw(B -- E, Arrow(HookHead, size=1.5mm));
+            draw(Label("$w$", position=Relative(.6)), align=LeftSide, B -- E);
+            draw(C -- F -- E);
+            pair Fp = extension(C, D, E, F);
+            draw(C -- Fp);
+            pair Ep = extension(A, B, F, E);
+            draw(B -- Ep, Arrow(HookHead, size=1.5mm));
+            draw(Ep -- E);
+            draw(D -- D + v, dashed);
+            pair H1 = projection(A, D) * C, H2 = projection(E, F) * C;
+            draw(H1 -- H2);
+            markrightangle(D, H1, C, size=2mm);
+            markrightangle(F, H2, C, size=2mm);
+            draw(Label("$w^\prime$", position=Relative(.6)), B -- Ep);
+
+            dot("$A$", A, dir(45 + 180));
+            dot("$B$", B, dir(-90));
+            dot("$C$", C, dir(90));
+            dot("$D$", D, dir(-45 + 180));
+            dot("$E$", E, dir(-45));
+            dot("$F$", F, dir(45));
+            dot("$F^\prime$", Fp, dir(0));
+            dot("$E^\prime$", Ep, dir(0));
+            dot("$H_1$", H1, dir(-45 + 180));
+            dot("$H_2$", H2, dir(-45));
+        \end{asy}
+    \end{center}
+
+    Построим параллелограммы, фигурирующие в условии. Затем обозначим точки, как на рисунке. Из точки $C$ опустим перпендикуляры $CH_1$ и $CH_2$ на прямые $AD$ и $EF$ соответственно. Прямые $AD$ и $EF$ сонаправленны одному и тому же вектору $v$, а значит, параллельны, поэтому точки $C$, $H_1$ и $H_2$ коллинеарны. А ещё, $EF = BC = AD$, т.\,к. получены друг из друга параллельным переносом. Отметим точки $F^\prime = CD \cap EF$, $E^\prime = AB \cap EF$. Заметим, что $S(ADFE) = S(ADF^\prime E^\prime)$, т.\,к. у этих параллелограммов равные основания ($EF = E^\prime F^\prime$) и высоты к этим основаниям (в силу $AD \parallel EF$). Аналогично, $S(BCFE) = S(BCF^\prime E^\prime)$. Иными словами, $S(u + w, v) = S(u + v^\prime, v)$ и $S(w, v) = S(w^\prime, v)$. Отсюда
+    $$S(u, v) + S(w, v) = S(u, v) + S(w^\prime, v) = CH_1 \cdot AD + CH_2 \cdot EF = H_1H_2 \cdot AD = S(u + w^\prime, v)$$
+    с одной стороны и
+    $$S(u + w^\prime, v) = S(u + w, v)$$
+    с другой. Отсюда $S(u + w, v) = S(u, v) + S(w, v)$.
+
+    Итак, $S(u, v) = S
+    \begin{pmatrix}
+        u_1 & u_2\\
+        v_1 & v_2
+    \end{pmatrix}$ полилинейна и кососимметрична, а (из курса алгебры) отсюда следует, что $S = S(E) \cdot \det
+    \begin{pmatrix}
+        u_1 & u_2\\
+        v_1 & v_2
+    \end{pmatrix}$, а $S(E) = S(e_1, e_2) = 1$.
+\end{proof}
+
+По аналогичным причинам выполнено
+
+\begin{statement}
+    Пусть $u = (u_1, u_2, u_3)$, $v = (v_1, v_2, v_3)$ и $w = (w_1, w_2, w_3)$. Тогда
+    $$
+    V(u, v, w) = \det
+    \begin{pmatrix}
+        u_1 & u_2 & u_3\\
+        v_1 & v_2 & v_3\\
+        w_1 & w_2 & w_3
+    \end{pmatrix}.
+    $$
+\end{statement}
+
+

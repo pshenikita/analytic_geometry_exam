@@ -1,0 +1,212 @@
+\ProvidesPackage{preamble}
+
+% Корректность отображения всех шрифтов, кодировок и мат. символов
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amssymb, amsmath, amsthm, mathtools}
+
+\usepackage{lipsum}
+% \usepackage{showframe}
+
+% Уравнивание длин колонок на последней странице
+% \usepackage{flushend}
+
+% Отображение содержания
+% \usepackage{tocloft}
+% \addto\captionsrussian{\renewcommand*\contentsname{Экзаменационные вопросы}}
+% \renewcommand\cftsecfont{\mdseries}
+% \renewcommand\cftsecpagefont{\mdseries}
+
+% Настройки шрифта
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+
+% Отступ у первого абзаца
+\usepackage{indentfirst}
+
+% Вставка картинок
+\usepackage{graphicx}
+\graphicspath{img/}
+
+% Всё, что нужно для tikz
+\usepackage{tikz}
+\usetikzlibrary{shapes, decorations, calc, arrows, angles}
+\usetikzlibrary{3d, fit, backgrounds, decorations.text}
+\usetikzlibrary{positioning, shapes.symbols}
+\usetikzlibrary{decorations.pathreplacing, calligraphy}
+\tikzset{>=latex}
+
+% Asymptote для иллюстраций
+\usepackage{asymptote}
+
+% Римские числа из обычных
+\newcommand{\rnum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+% Часто используемые обозначения
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\rk}{\mathrm{rk}\,}
+\newcommand{\tr}{\mathrm{tr}\,}
+\newcommand*{\bord}{\multicolumn{1}{c|}{}}
+
+% Отступы между абзацами
+\setlength{\parskip}{1ex}
+
+% Отступы
+\usepackage[left=18mm, right=18mm, top=20mm, bottom=16mm, includefoot]{geometry}
+
+% Пастельные цветовые рамки
+\usepackage[many]{tcolorbox}
+
+% Объединения строк и столбцов в таблицах
+\usepackage{multirow}
+
+% Для работы со списками
+\usepackage{enumitem}
+
+% Оболочка для теоремы
+\newcounter{theorem}[section]
+\newenvironment{theorem}[1][]{\smallskip
+\refstepcounter{theorem}
+\begin{tcolorbox}[enhanced,
+    sharp corners,
+    breakable,
+    borderline west={2pt}{0pt}{red!50},
+    bottomrule=0mm, rightrule=0mm,
+    colback=orange!10,
+    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Теорема \thesection.\thetheorem
+    \ifx&#1&
+        {}
+    \else
+        \;(#1)
+    \fi
+    }]
+}{
+\end{tcolorbox}
+}
+
+% Оболочка для доказательства
+\renewenvironment{proof}{\smallskip
+\begin{tcolorbox}[enhanced,
+    sharp corners,
+    breakable,
+    borderline west={2pt}{0pt}{gray!50},
+    bottomrule=0mm, rightrule=0mm,
+    colback=gray!10,
+    colframe=gray!10]
+    \setlength{\parindent}{17pt}
+    \noindent\textit{Доказательство.}
+}{\hfill$\blacksquare$
+\end{tcolorbox}
+}
+
+% Оболочки для леммы, предложения и утверждения
+\newcounter{lemma}[section]
+\newenvironment{lemma}[1][]{\smallskip
+\refstepcounter{lemma}
+\begin{tcolorbox}[enhanced,
+    sharp corners,
+    breakable,
+    borderline west={2pt}{0pt}{orange!50},
+    bottomrule=0mm, rightrule=0mm,
+    colback=orange!10,
+    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Лемма \thesection.\thelemma
+    \ifx&#1&
+        {}
+    \else
+        \;(#1)
+    \fi
+    }]
+}{
+\end{tcolorbox}
+}
+
+\newenvironment{proposal}[1][]{\smallskip
+\begin{tcolorbox}[enhanced,
+    sharp corners,
+    breakable,
+    borderline west={2pt}{0pt}{orange!50},
+    bottomrule=0mm, rightrule=0mm,
+    colback=orange!10,
+    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Предложение
+    \ifx&#1&
+        {}
+    \else
+        \;(#1)
+    \fi
+    }]
+}{
+\end{tcolorbox}
+}
+
+\newenvironment{statement}[1][]{\smallskip
+\begin{tcolorbox}[enhanced,
+    sharp corners,
+    breakable,
+    borderline west={2pt}{0pt}{orange!50},
+    bottomrule=0mm, rightrule=0mm,
+    colback=orange!10,
+    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Утверждение
+    \ifx&#1&
+        {}
+    \else
+        \;(#1)
+    \fi
+    }]
+}{
+\end{tcolorbox}
+}
+
+% Оболочка для определения
+\newcounter{definition}[section]
+\newenvironment{definition}[1][]{\smallskip
+\refstepcounter{definition}
+\begin{tcolorbox}[enhanced,
+    sharp corners,
+    breakable,
+    borderline west={2pt}{0pt}{blue!50},
+    bottomrule=0mm, rightrule=0mm,
+    colback=blue!8,
+    colframe=blue!15!white, title={\bfseries\color{black}\sffamily Определение \thesection.\thedefinition
+    \ifx&#1&
+        {}
+    \else
+        \;(#1)
+    \fi
+    }]
+}{
+\end{tcolorbox}
+}
+
+% Оболочки для задач
+\newenvironment{orangebox}{\smallskip
+\begin{tcolorbox}[enhanced,
+    sharp corners,
+    breakable,
+    borderline west={2pt}{0pt}{red!50},
+    bottomrule=0mm, rightrule=0mm,
+    colback=orange!10,
+    colframe=orange!10!white]
+}{
+\end{tcolorbox}
+}
+
+\newcounter{problem}
+\newenvironment{problem}[1][]{\smallskip
+\refstepcounter{problem}
+    \noindent{\bfseries\color{black}\sffamily Задача \theproblem
+    \ifx&#1&
+        \!\!.
+    \else
+        \;{\mdseries(#1)}.
+    \fi
+    }\!\!
+}{
+\par\smallskip
+}
+

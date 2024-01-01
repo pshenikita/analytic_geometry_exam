@@ -1,0 +1,212 @@
+\section{Ортогональная классификация кривых второй степени. Приведение уравнения кривой к каноническому виду}
+
+Общий вид кривой второго порядка:
+$$
+a_{11}x^2 + a_{22}y^2 + 2a_{12}xy + 2a_1x + 2a_2y + a_0 = 0.
+$$
+Для удобства обозначим $Q =
+\begin{pmatrix}
+    a_{11} & a_{12}\\
+    a_{12} & a_{22}
+\end{pmatrix}$, $A =
+\begin{pmatrix}
+    a_{11} & a_{12} & a_1\\
+    a_{12} & a_{22} & a_2\\
+    a_1 & a_2 & a_0
+\end{pmatrix}.$
+
+\begin{theorem}
+    Для любой квадрики существует прямоугольная система координат, в которой она имеет один из следующих видов (называемых \textbf{каноническими уравнениями данной квадрики})
+    \begin{enumerate}
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ ($a \geqslant b > 0$) --- \textbf{эллипс}.
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} = -1$ ($a \geqslant b > 0$) --- \textbf{мнимый эллипс}.
+        \item $\displaystyle\frac{x^2}{a^2} + \frac{y^2}{b^2} = 0$ ($a \geqslant b > 0$) --- \textbf{пара пересекающихся мнимых прямых}.
+        \item $\displaystyle\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1$ ($a > 0$, $b > 0$) --- \textbf{гипербола}.
+        \item $\displaystyle\frac{x^2}{a^2} - \frac{y^2}{b^2} = 0$ ($a \geqslant b > 0$) --- \textbf{пара пересекающихся прямых}.
+        \item $y^2 = 2px$ ($p > 0$) --- \textbf{парабола}.
+        \item $y^2 - a^2 = 0$ ($a > 0$) --- \textbf{пара параллельных прямых}.
+        \item $y^2 + a^2 = 0$ ($a > 0$) --- \textbf{пара параллельных мнимых прямых}.
+        \item $y^2 = 0$ --- \textbf{пара совпавших прямых}.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Докажем, что из общего уравнения квадрики можно получить одно из указанных в формулировке с помощью одного поворота и одного параллельного переноса (эти преобразования являются ортогональными, сохраняющими ориентацию) и, возможно, одной перестановки осей (меняет ориентацию). Понятно, что если $a_{12} = 0$, то выделением полных квадратов (а геометрически --- параллельным переносом) мы получим канонический вид (уйдёт вся линейная часть). Поэтому задача поворота --- как раз занулить $a_{12}$ (иными словами, сделать матрицу квадратичной формы диагональной). Итак, рассмотрим произвольный поворот:
+    $$
+    \begin{pmatrix}
+        x\\y
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        \cos\varphi & -\sin\varphi\\
+        \sin\varphi & \cos\varphi
+    \end{pmatrix}
+    \begin{pmatrix}
+        x^\prime\\
+        y^\prime
+    \end{pmatrix}.
+    $$
+
+    Тогда
+    $$
+    \begin{array}{c}
+        F^\prime(x^\prime, y^\prime) = F(x, y) = F(\cos\varphi\cdot x^\prime - \sin\varphi\cdot y^\prime, \sin\varphi\cdot x^\prime + \cos\varphi\cdot y^\prime) = a_{11}(\cos\varphi\cdot x^\prime - \sin\varphi\cdot y^\prime)^2 + {}\\{} + 2a_{12}(\cos\varphi\cdot x^\prime - \sin\varphi\cdot y^\prime)(\sin\varphi\cdot x^\prime + \cos\varphi\cdot y^\prime) + a_{22}(\sin\varphi\cdot x^\prime + \cos\varphi\cdot y^\prime)^2 + \ldots
+    \end{array}
+    $$
+
+    Коэффициент при $2x^\prime y^\prime$, т.\,е. $a_{12}^\prime$ равен
+    $$
+    -a_{11}\cos\varphi\sin\varphi + a_{12}(\cos\varphi^2 - \sin\varphi^2) + a_{22}\cos\varphi\sin\varphi = (a_{22} - a_{11})\frac{\sin 2\varphi}{2} + a_{12}\cos 2\varphi.
+    $$
+
+    Хотим, чтобы он был равен нулю. Возьмём $\varphi$ таким, что $\displaystyle \ctg 2\varphi = \frac{a_{11} - a_{22}}{2a_{12}}$. Такой $\varphi$ всегда существует, потому что если $a_{12} = 0$, то нам вовсе никакой поворот был не нужен. Тогда новый вид нашей кривой
+    $$
+    \widetilde{F}(\widetilde{x}, \widetilde{y}) = \lambda_1 \widetilde{x}^2 + \lambda_2 \widetilde{y}^2 + 2b_1\widetilde{x} + 2b_2\widetilde{y} + b_0 = 0.
+    $$
+
+    Рассмотрим случаи:
+    \begin{enumerate}
+        \item $\lambda_1, \lambda_2 \ne 0$. Тогда выделяем полные квадраты (делаем параллельный перенос):
+            $$
+            \begin{array}{c}
+                F^\prime(x^\prime, y^\prime) = \widetilde{F}(\widetilde{x}, \widetilde{y}) = \lambda_1 \widetilde{x}^2 + \lambda_2 \widetilde{y}^2 + 2b_1\widetilde{x} + 2b_2\widetilde{y} + b_0 = \lambda_1\underbrace{\left(\widetilde{x} + \frac{b_1}{\lambda_1}\right)^2}_{x^\prime} + \lambda_2\underbrace{\left(\widetilde{y} + \frac{b_2}{\lambda_2}\right)^2}_{y^\prime} + {}\\\displaystyle{} + \left(b_0 - \frac{b_1^2}{\lambda_1} - \frac{b_2^2}{\lambda_2}\right) = \lambda_1{x^\prime}^2 + \lambda_2{y^\prime}^2 + \tau.
+            \end{array}
+            $$
+            Здесь в зависимости от знаков $\lambda_1$, $\lambda_2$ и $\tau$ можем получить эллипс, мнимый эллипс, гиперболу, пару пересекающихся прямых и пару мнимых пересекающися прямых.
+        \item Один из $\lambda_1$ и $\lambda_2$ нулевой (оба нулевыми быть не могут, иначе мы аффинным преобразованием уменьшили степень уравнения, а так не бывает) и $b_1 \ne 0$. Может, не ограничивая общности, сказать, что $\lambda_1 = 0$. Если видим иное, меняем местами $x$ и $y$ (это преобразование ортогонально, а больше мы от него ничего и не требуем). Тогда, выделив оставшийся полный квадрат, получим что-то вида $\lambda_2{y^\prime}^2 + 2b_1 x^\prime$ (свободный член выносим в $x^\prime$). Это парабола.
+        \item Если $\lambda_1 = b_1 = 0$, то, выделив полный квадрат у $\widetilde{y}$, получим $\lambda_2{y^\prime}^2 + \tau$. Это может быть пара параллельных прямых, пара мнимых параллельных прямых или пара совпавших прямых.
+    \end{enumerate}
+\end{proof}
+
+
+Здесь приведём алгоритм эффективного приведения кривой к каноническому виду (рассказал Александр Александрович).
+
+\begin{lemma}
+    Пусть $Q$ --- матрица квадратичной формы многочлена $F(x, y)$. Пусть в новой системе координат эту кривую задаёт многочлен 
+    $$F^\ast(x^\ast, y^\ast) \vcentcolon = F(x(x^\ast, y^\ast), y(x^\ast, y^\ast))$$
+    с матрицей квадратичной формы $Q^\ast$. Тогда $Q^\ast = C^TQC$.
+\end{lemma}
+
+\begin{proof}
+    Имеем
+    $$
+    \begin{array}{c}\displaystyle
+        F^\ast(x^\ast, y^\ast) =
+        \begin{pmatrix}
+            x & y
+        \end{pmatrix}Q
+        \begin{pmatrix}
+            x\\ y
+        \end{pmatrix} + \ldots =
+        \begin{pmatrix}
+            x\\ y
+        \end{pmatrix}^T
+        Q
+        \begin{pmatrix}
+            x\\ y
+        \end{pmatrix} + \ldots = {}\\\displaystyle {} = 
+        \left(
+            C
+            \begin{pmatrix}
+                x^\ast\\ y^\ast
+            \end{pmatrix}
+            +
+            \begin{pmatrix}
+                x_0\\ y_0
+            \end{pmatrix}
+        \right)^TQ
+        \left(
+            C
+            \begin{pmatrix}
+                x^\ast\\ y^\ast
+            \end{pmatrix}
+            +
+            \begin{pmatrix}
+                x_0\\ y_0
+            \end{pmatrix}
+        \right) =
+        \begin{pmatrix}
+            x^\ast & y^\ast
+        \end{pmatrix}\underbrace{C^TQC}_{Q^\ast}
+        \begin{pmatrix}
+            x^\ast\\ y^\ast
+        \end{pmatrix} + \ldots
+    \end{array}
+    $$
+    За $\ldots$ обозначаем линейную часть в соответствующих уравнениях.
+\end{proof}
+
+Итак, сначала из системы
+$$
+\frac{\partial F(x, y)}{dx} = \frac{\partial F(x, y)}{dy} = 0
+$$
+найдём центр (центры) нашей кривой. Так мы попадаем в следующие три случая:
+
+\begin{enumerate}
+    \item \textbf{Точка}. Если найденный центр --- точка, то мы сразу получаем начало новой системы координат. Осталось найти новые базисные вектора. Пусть $C$ --- матрица замены координат, при которой матрица квадратичной формы становится диагональной. Тогда новая матрица квадратичной формы $Q^\ast = C^TQC$ (из леммы 22.1). Мы делали ортогональную замену, поэтому $C^{-1} = C^T$. Умножим равенство на $C$ слева. Получаем $QC = CQ^\ast$. По столбцам $C$ стоял координаты новых базисных векторов. Значит, когда мы умножаем $Q$ на новый базисных вектор, то получается он же, умноженный на какое-то число (т.\,к. матрица $Q^\ast$ диагональна). Итак, базисные векторы канонической системы координат --- собственные для матрицы квадратичной формы. Итак, найдём собственные векторы:
+        $$
+        Q
+        \begin{pmatrix}
+            \alpha\\\beta
+        \end{pmatrix} = \lambda
+        \begin{pmatrix}
+            \alpha\\\beta
+        \end{pmatrix} \Leftrightarrow
+        (Q - \lambda E)
+        \begin{pmatrix}
+            \alpha\\\beta
+        \end{pmatrix} = 0.
+        $$
+
+        Эта система уравнений может иметь ненулевое решение только если матрица $Q - \lambda E$ вырождена, т.\,е. $\det(Q - \lambda E) = 0$. А это характеристическое уравнение. Оно квадратное относительно $\lambda$. Причём, непростое.
+        \begin{lemma}[<<Не очень чудо>>]
+            Оба корня характеристического уравнения вещественны.
+        \end{lemma}
+        \begin{proof}
+            По словам Александра Александровича, есть какое-то умное доказательство. Но я его не знаю, а поэтому здесь будет тупое.
+            $$
+            \begin{array}{c}
+                \det
+                \begin{pmatrix}
+                    a_{11} - \lambda & a_{12}\\
+                    a_{12} & a_{22} - \lambda
+                \end{pmatrix} = 0\\
+                \lambda^2 - (a_{11} + a_{22})\lambda + a_{11}a_{22} - a_{12}^2 = 0\\
+                D = (a_{11} + a_{22})^2 - 4a_{11}a_{22} + 4a_{12}^2 = (a_{11} - a_{22})^2 + (2a_{12})^2 \geqslant 0.
+            \end{array}
+            $$
+            Один корень --- это два совпадающих.
+        \end{proof}
+
+        Теперь без труда находим базисные векторы и каноническую систему координат. Проводя соответствующую замену, получаем и каноническое уравнение кривой.
+    \item \textbf{Прямая}. За начало координат берём любую точку на найденной прямой, а в качестве базисных векторов --- её направляющий вектор и вектор нормали.
+    \item \textbf{Ничего}. Если центра нет, тогда наша кривая --- обязательно парабола. У неё есть единственное асимптотическое направление --- её ось. То есть, уравнение
+        $$
+        \begin{pmatrix}
+            \alpha & \beta
+        \end{pmatrix}
+        Q
+        \begin{pmatrix}
+            \alpha\\\beta
+        \end{pmatrix}
+        $$
+        имеет единственное решение (с точностью до пропорциональности). Находим его, это будет один из базисных векторов. Второй --- перпендикулярный ему. Теперь хотим найти вершину (центр новой системы координат). Для этого введём следующее
+        \begin{definition}
+            \textbf{Градиентом} функции $F(x_1, x_2, \ldots, x_k)$ в точке $(x_1^\ast, x_2^\ast, \ldots, x_k^\ast)$ назовём вектор
+            $$
+            \left.\left(\frac{\partial F}{dx_1}, \frac{\partial F}{dx_2}, \ldots, \frac{\partial F}{dx_k}\right)\right|_{(x_1^\ast, x_2^\ast, \ldots, x_k^\ast)}.
+            $$
+        \end{definition}
+
+        Параметризуем точку, которой мы <<ходим>> по этой кривой: $F(x(t), y(t)) = 0$ при всех $t$. Нам известно, что $F(x(t), y(t)) = 0$ для всех $t$. Возьмём производную от обеих частей, применив правило дифференцирования сложной функции. Получим:
+        $$
+        \frac{\partial F}{dx}\cdot\frac{dx}{dt} + \frac{\partial F}{dy}\cdot\frac{dy}{dt} = 0 \Leftrightarrow \left(\frac{\partial F}{dx}, \frac{\partial F}{dy}\right) \cdot \left(\frac{dx}{dt}, \frac{dy}{dt}\right) = 0.
+        $$
+
+        А вектор $\displaystyle\left(\frac{dx}{dt}, \frac{dy}{dt}\right)$ --- это вектор касательной в точке $t$. Это символизирует, что \textit{градиент всюду перпендикулярен касательной}. Итак, нам это всё нужно было в контексте поиска вершины параболы. Действительно, вершина --- единственная точка, в которой градиент параллелен оси параболы. Поэтому условия на вершину мы налагаем следующие:
+        $$
+        -\beta \cdot \frac{\partial F}{dx} + \alpha \cdot \frac{\partial F}{dy} = 0,\quad F(x, y) = 0.
+        $$
+        Итак, мы нашли каноническую систему координат, к чему и стремились.
+\end{enumerate}
+
+
