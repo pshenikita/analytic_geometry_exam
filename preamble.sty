@@ -13,10 +13,10 @@
 % \usepackage{flushend}
 
 % Отображение содержания
-% \usepackage{tocloft}
-% \addto\captionsrussian{\renewcommand*\contentsname{Экзаменационные вопросы}}
-% \renewcommand\cftsecfont{\mdseries}
-% \renewcommand\cftsecpagefont{\mdseries}
+\usepackage{tocloft}
+\addto\captionsrussian{\renewcommand*\contentsname{\sffamily Экзаменационные вопросы}}
+\renewcommand\cftsecfont{\mdseries\sffamily}
+\renewcommand\cftsecpagefont{\mdseries\sffamily}
 
 % Настройки шрифта
 \usepackage{fontspec}
@@ -30,6 +30,8 @@
 % Вставка картинок
 \usepackage{graphicx}
 \graphicspath{img/}
+
+% 
 
 % Всё, что нужно для tikz
 \usepackage{tikz}
@@ -69,144 +71,99 @@
 % Для работы со списками
 \usepackage{enumitem}
 
+% Для работы с секциями
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
 % Оболочка для теоремы
 \newcounter{theorem}[section]
 \newenvironment{theorem}[1][]{\smallskip
 \refstepcounter{theorem}
-\begin{tcolorbox}[enhanced,
-    sharp corners,
-    breakable,
-    borderline west={2pt}{0pt}{red!50},
-    bottomrule=0mm, rightrule=0mm,
-    colback=orange!10,
-    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Теорема \thesection.\thetheorem
     \ifx&#1&
-        {}
+        \smallskip\noindent{\bfseries\sffamily Теорема \thesection.\thetheorem.}
     \else
-        \;(#1)
+        \smallskip\noindent{\bfseries\sffamily Теорема \thesection.\thetheorem\;(#1).}
     \fi
-    }]
-}{
-\end{tcolorbox}
+    }{
+    \par\smallskip
 }
 
 % Оболочка для доказательства
 \renewenvironment{proof}{\smallskip
-\begin{tcolorbox}[enhanced,
-    sharp corners,
-    breakable,
-    borderline west={2pt}{0pt}{gray!50},
-    bottomrule=0mm, rightrule=0mm,
-    colback=gray!10,
-    colframe=gray!10]
-    \setlength{\parindent}{17pt}
-    \noindent\textit{Доказательство.}
-}{\hfill$\blacksquare$
-\end{tcolorbox}
+    %\setlength{\parindent}{17pt}
+    %\setlength{\parskip}{1ex}
+    \noindent{\bfseries\sffamily Доказательство.}
+}{
+    \hfill$\blacksquare$\par\smallskip
 }
 
 % Оболочки для леммы, предложения и утверждения
 \newcounter{lemma}[section]
 \newenvironment{lemma}[1][]{\smallskip
 \refstepcounter{lemma}
-\begin{tcolorbox}[enhanced,
-    sharp corners,
-    breakable,
-    borderline west={2pt}{0pt}{orange!50},
-    bottomrule=0mm, rightrule=0mm,
-    colback=orange!10,
-    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Лемма \thesection.\thelemma
     \ifx&#1&
-        {}
+        \smallskip\noindent{\bfseries\sffamily Лемма \thesection.\thelemma.}
     \else
-        \;(#1)
+        \smallskip\noindent{\bfseries\sffamily Лемма \thesection.\thelemma\;(#1).}
     \fi
-    }]
-}{
-\end{tcolorbox}
+    }{
+    \par\smallskip
 }
 
 \newenvironment{proposal}[1][]{\smallskip
-\begin{tcolorbox}[enhanced,
-    sharp corners,
-    breakable,
-    borderline west={2pt}{0pt}{orange!50},
-    bottomrule=0mm, rightrule=0mm,
-    colback=orange!10,
-    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Предложение
     \ifx&#1&
-        {}
+        \smallskip\noindent{\bfseries\sffamily Предложение.}
     \else
-        \;(#1)
+        \smallskip\noindent{\bfseries\sffamily Предложение \;(#1).}
     \fi
-    }]
-}{
-\end{tcolorbox}
+    }{
+    \par\smallskip
 }
 
 \newenvironment{statement}[1][]{\smallskip
-\begin{tcolorbox}[enhanced,
-    sharp corners,
-    breakable,
-    borderline west={2pt}{0pt}{orange!50},
-    bottomrule=0mm, rightrule=0mm,
-    colback=orange!10,
-    colframe=orange!20!white, title={\bfseries\color{black}\sffamily Утверждение
     \ifx&#1&
-        {}
+        \smallskip\noindent{\bfseries\sffamily Утверждение.}
     \else
-        \;(#1)
+        \smallskip\noindent{\bfseries\sffamily Утверждение \;(#1).}
     \fi
-    }]
-}{
-\end{tcolorbox}
+    }{
+    \par\smallskip
 }
 
 % Оболочка для определения
 \newcounter{definition}[section]
 \newenvironment{definition}[1][]{\smallskip
 \refstepcounter{definition}
-\begin{tcolorbox}[enhanced,
-    sharp corners,
-    breakable,
-    borderline west={2pt}{0pt}{blue!50},
-    bottomrule=0mm, rightrule=0mm,
-    colback=blue!8,
-    colframe=blue!15!white, title={\bfseries\color{black}\sffamily Определение \thesection.\thedefinition
     \ifx&#1&
-        {}
+        \smallskip\noindent{\bfseries\sffamily Определение \thesection.\thedefinition.}
     \else
-        \;(#1)
+        \smallskip\noindent{\bfseries\sffamily Определение \thesection.\thedefinition\;(#1).}
     \fi
-    }]
-}{
-\end{tcolorbox}
+    }{
+    \par\smallskip
 }
 
 % Оболочки для задач
-\newenvironment{orangebox}{\smallskip
-\begin{tcolorbox}[enhanced,
-    sharp corners,
-    breakable,
-    borderline west={2pt}{0pt}{red!50},
-    bottomrule=0mm, rightrule=0mm,
-    colback=orange!10,
-    colframe=orange!10!white]
-}{
-\end{tcolorbox}
+\newenvironment{remark}[1][]{\smallskip
+    \ifx&#1&
+        \smallskip\noindent{\bfseries\sffamily Примечание.}
+    \else
+        \smallskip\noindent{\bfseries\sffamily Примечание\;(#1).}
+    \fi
+    }{
+    \par\smallskip
 }
 
 \newcounter{problem}
 \newenvironment{problem}[1][]{\smallskip
 \refstepcounter{problem}
-    \noindent{\bfseries\color{black}\sffamily Задача \theproblem
     \ifx&#1&
-        \!\!.
+        \noindent{\bfseries\sffamily Задача \theproblem.}
     \else
-        \;{\mdseries(#1)}.
+        \noindent{\bfseries\sffamily Задача \theproblem.{\mdseries(#1)}.}
     \fi
-    }\!\!
-}{
+    }{
 \par\smallskip
 }
+
 
