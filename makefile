@@ -1,6 +1,6 @@
-angem.pdf: angem.tex
+angem.pdf: angem.tex questions/question* preamble.sty
 	lualatex $<
 
 clean:
-	rm *.aux *.log *.pre
+	rm *.aux *.log *.pre *.toc
 
