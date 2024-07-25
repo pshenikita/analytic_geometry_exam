@@ -7,22 +7,16 @@
 \usepackage{amssymb, amsmath, amsthm, mathtools}
 
 \usepackage{lipsum}
-% \usepackage{showframe}
-
-% Уравнивание длин колонок на последней странице
-% \usepackage{flushend}
 
 % Отображение содержания
 \usepackage{tocloft}
-\addto\captionsrussian{\renewcommand*\contentsname{\sffamily Экзаменационные вопросы}}
-\renewcommand\cftsecfont{\mdseries\sffamily}
-\renewcommand\cftsecpagefont{\mdseries\sffamily}
+\addto\captionsrussian{\renewcommand*\contentsname{Экзаменационные вопросы}}
+\renewcommand\cftsecfont{\mdseries}
+\renewcommand\cftsecpagefont{\mdseries}
 
 % Настройки шрифта
 \usepackage{fontspec}
 \setmainfont{CMU Serif}
-\setsansfont{CMU Sans Serif}
-\setmonofont{CMU Typewriter Text}
 
 % Отступ у первого абзаца
 \usepackage{indentfirst}
@@ -30,16 +24,6 @@
 % Вставка картинок
 \usepackage{graphicx}
 \graphicspath{img/}
-
-% 
-
-% Всё, что нужно для tikz
-\usepackage{tikz}
-\usetikzlibrary{shapes, decorations, calc, arrows, angles}
-\usetikzlibrary{3d, fit, backgrounds, decorations.text}
-\usetikzlibrary{positioning, shapes.symbols}
-\usetikzlibrary{decorations.pathreplacing, calligraphy}
-\tikzset{>=latex}
 
 % Asymptote для иллюстраций
 \usepackage{asymptote}
@@ -49,12 +33,23 @@
 
 % Часто используемые обозначения
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\C}{\mathbb{C}}
-\newcommand{\rk}{\mathrm{rk}\,}
-\newcommand{\tr}{\mathrm{tr}\,}
+\newcommand{\F}{\mathbb{F}\,}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\renewcommand{\mod}{\mathrm{mod}\,}
+\renewcommand{\Re}{\mathrm{Re}\,}
+\renewcommand{\Im}{\mathrm{Im}\,}
+\newcommand{\ord}{\mathrm{ord}\,}
+\renewcommand{\gcd}{\mathrm{НОД}\,}
+\newcommand{\lcm}{\mathrm{НОК}\,}
 \newcommand*{\bord}{\multicolumn{1}{c|}{}}
+\newcommand{\bigzero}{\makebox(0, 0){\Huge 0}}
+\newcommand{\bigast}{\makebox(0, 0){\Huge \ast}}
 
 % Отступы между абзацами
 \setlength{\parskip}{1ex}
@@ -68,28 +63,24 @@
 % Для работы со списками
 \usepackage{enumitem}
 
-% Для работы с секциями
-\usepackage{sectsty}
-\allsectionsfont{\sffamily}
-
 % Оболочка для теоремы
 \newcounter{theorem}[section]
 \newenvironment{theorem}[1][]{\par\smallskip
 \refstepcounter{theorem}
     \ifx&#1&
-        \smallskip\noindent{\bfseries\sffamily Теорема \thesection.\thetheorem.}
+        \smallskip\noindent{\bfseries Теорема \thesection.\thetheorem.}
     \else
-        \smallskip\noindent{\bfseries\sffamily Теорема \thesection.\thetheorem\;(#1).}
+        \smallskip\noindent{\bfseries Теорема \thesection.\thetheorem\;{\mdseries(#1)}.}
     \fi
     }{
     \par\smallskip
 }
 
 % Оболочка для доказательства
-\renewenvironment{proof}{\par\smallskip
+\renewenvironment{proof}{\smallskip
     %\setlength{\parindent}{17pt}
     %\setlength{\parskip}{1ex}
-    \noindent{\bfseries\sffamily Доказательство.}
+    \noindent{\bfseries Доказательство.}
 }{
     \hfill$\blacksquare$\par\smallskip
 }
@@ -99,9 +90,9 @@
 \newenvironment{lemma}[1][]{\par\smallskip
 \refstepcounter{lemma}
     \ifx&#1&
-        \smallskip\noindent{\bfseries\sffamily Лемма \thesection.\thelemma.}
+        \smallskip\noindent{\bfseries Лемма \thesection.\thelemma.}
     \else
-        \smallskip\noindent{\bfseries\sffamily Лемма \thesection.\thelemma\;(#1).}
+        \smallskip\noindent{\bfseries Лемма \thesection.\thelemma\;{\mdseries(#1)}.}
     \fi
     }{
     \par\smallskip
@@ -109,9 +100,9 @@
 
 \newenvironment{proposal}[1][]{\par\smallskip
     \ifx&#1&
-        \smallskip\noindent{\bfseries\sffamily Предложение.}
+        \smallskip\noindent{\bfseries Предложение.}
     \else
-        \smallskip\noindent{\bfseries\sffamily Предложение \;(#1).}
+        \smallskip\noindent{\bfseries Предложение \;(#1).}
     \fi
     }{
     \par\smallskip
@@ -119,9 +110,9 @@
 
 \newenvironment{statement}[1][]{\par\smallskip
     \ifx&#1&
-        \smallskip\noindent{\bfseries\sffamily Утверждение.}
+        \smallskip\noindent{\bfseries Утверждение.}
     \else
-        \smallskip\noindent{\bfseries\sffamily Утверждение \;(#1).}
+        \smallskip\noindent{\bfseries Утверждение \;{\mdseries(#1)}.}
     \fi
     }{
     \par\smallskip
@@ -132,9 +123,9 @@
 \newenvironment{definition}[1][]{\par\smallskip
 \refstepcounter{definition}
     \ifx&#1&
-        \smallskip\noindent{\bfseries\sffamily Определение \thesection.\thedefinition.}
+        \smallskip\noindent{\bfseries Определение \thesection.\thedefinition.}
     \else
-        \smallskip\noindent{\bfseries\sffamily Определение \thesection.\thedefinition\;(#1).}
+        \smallskip\noindent{\bfseries Определение \thesection.\thedefinition\;{\mdseries(#1)}.}
     \fi
     }{
     \par\smallskip
@@ -143,9 +134,9 @@
 % Оболочки для задач
 \newenvironment{remark}[1][]{\par\smallskip
     \ifx&#1&
-        \smallskip\noindent{\bfseries\sffamily Примечание.}
+        \smallskip\noindent{\bfseries Примечание.}
     \else
-        \smallskip\noindent{\bfseries\sffamily Примечание\;(#1).}
+        \smallskip\noindent{\bfseries Примечание\;(#1).}
     \fi
     }{
     \par\smallskip
@@ -155,12 +146,14 @@
 \newenvironment{problem}[1][]{\par\smallskip
 \refstepcounter{problem}
     \ifx&#1&
-        \noindent{\bfseries\sffamily Задача \theproblem.}
+        \noindent{\bfseries Задача \theproblem.}
     \else
-        \noindent{\bfseries\sffamily Задача \theproblem.{\mdseries(#1)}.}
+        \noindent{\bfseries Задача \theproblem\;{\mdseries(#1)}.}
     \fi
     }{
 \par\smallskip
 }
+
+
 
 
